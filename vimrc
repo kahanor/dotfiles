@@ -4,7 +4,7 @@ filetype on
 syntax on
 
 set background=dark
-colorscheme palenight
+colorscheme gruvbox
 set laststatus=2
 let g:palenight_terminal_italics=1
 
