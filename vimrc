@@ -1,4 +1,4 @@
-let mapleader=" "
+let mapleader=","
 
 filetype on
 syntax on
@@ -13,6 +13,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
