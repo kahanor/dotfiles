@@ -3,6 +3,19 @@ let mapleader=" "
 filetype on
 syntax on
 
+call plug#begin('.dotfiles/vim/plugged')
+
+Plug 'morhetz/gruvbox'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'rking/ag.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/indentpython.vim'
+
+call plug#end()
+
 set background=dark
 colorscheme gruvbox
 set laststatus=2
@@ -15,6 +28,7 @@ endif
 set guifont="Meslo LG"\ Regular:h18
 set colorcolumn=80
 set number
+set relativenumber
 set hidden
 set history=100
 
@@ -46,16 +60,4 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 map <leader>s :source $MYVIMRC<CR>
-call plug#begin('~/.vim/plugged')
-
-Plug 'morhetz/gruvbox'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'rking/ag.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'ervandew/supertab'
-Plug 'vim-scripts/indentpython.vim'
-
-call plug#end()
 
