@@ -3,7 +3,7 @@ let mapleader=","
 filetype on
 syntax on
 
-call plug#begin('.dotfiles/vim/plugged')
+call plug#begin('vim/plugged')
 
 Plug 'morhetz/gruvbox'
 Plug 'drewtempelmeyer/palenight.vim'
