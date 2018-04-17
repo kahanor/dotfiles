@@ -9,11 +9,14 @@ Plug 'morhetz/gruvbox'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'rking/ag.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'Townk/vim-autoclose'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
