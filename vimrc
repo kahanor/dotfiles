@@ -16,7 +16,6 @@ Plug 'ervandew/supertab'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'Townk/vim-autoclose'
-Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
