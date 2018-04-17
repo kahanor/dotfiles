@@ -44,6 +44,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 set incsearch
 set showmatch
 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 set splitbelow
 set splitright
 nnoremap <C-J> <C-W><C-J>
