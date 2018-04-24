@@ -16,6 +16,8 @@ Plug 'ervandew/supertab'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'Townk/vim-autoclose'
+Plug 'tmhedberg/SimpylFold'
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
@@ -34,6 +36,18 @@ set number
 set relativenumber
 set hidden
 set history=100
+let python_highlighting_all=1
+
+" enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" enable folding with space
+nnoremap <space> za
+
+" enable autocompletion
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 filetype indent on
 set nowrap
