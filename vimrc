@@ -12,12 +12,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'ervandew/supertab'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'Townk/vim-autoclose'
 Plug 'tmhedberg/SimpylFold'
-Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
@@ -45,9 +43,9 @@ set foldlevel=99
 " enable folding with space
 nnoremap <space> za
 
-" enable autocompletion
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" map gotodefinition
+"let g:ycm_autoclose_preview_window_after_completion=1
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 filetype indent on
 set nowrap
