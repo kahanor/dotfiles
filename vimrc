@@ -1,41 +1,134 @@
+" Gotta be first
+set nocompatible
+
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+" ----- Making Vim look good ------------------------------------------
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" ----- Vim as a programmer's text editor -----------------------------
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tmhedberg/SimpylFold'
+Bundle 'Valloric/YouCompleteMe'
+Plugin 'lervag/vimtex'
+
+" ----- Working with Git ----------------------------------------------
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+" ----- Other text editing features -----------------------------------
+Plugin 'Raimondi/delimitMate'
+
+" ----- man pages, tmux -----------------------------------------------
+Plugin 'jez/vim-superman'
+Plugin 'christoomey/vim-tmux-navigator'
+
+call vundle#end()
+
+filetype plugin indent on
+
+" --- General settings ---
+set backspace=indent,eol,start
+set ruler
+set number
+set showcmd
+set incsearch
+set hlsearch
+set encoding=utf-8
+
 let mapleader=","
 
-filetype on
 syntax on
 
-call plug#begin('~/.dotfiles/vim/plugged')
+nmap <leader>s :source ~/.vimrc<CR>
 
-Plug 'morhetz/gruvbox'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'rking/ag.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'Townk/vim-autoclose'
-Plug 'tmhedberg/SimpylFold'
+" Code formatting
+set tabstop=4
+set shiftwidth=4
 
-call plug#end()
+" We need this for plugins like Syntastic and vim-gitgutter which put symbols
+" in the sign column.
+hi clear SignColumn
 
+" ----- Plugin-Specific Settings --------------------------------------
+
+" ----- altercation/vim-colors-solarized settings -----
+" Toggle this to "light" for light colorscheme
 set background=dark
-colorscheme gruvbox
+
+" Uncomment the next line if your terminal is not configured for solarized
+"let g:solarized_termcolors=256
+
+" Set the colorscheme
+colorscheme solarized
+
+
+" ----- bling/vim-airline settings -----
+" Always show statusbar
 set laststatus=2
-let g:palenight_terminal_italics=1
 
-if (has("termguicolors"))
-    set termguicolors
-endif
+" Fancy arrow symbols, requires a patched font
+" To install a patched font, run over to
+"     https://github.com/abertsch/Menlo-for-Powerline
+" download all the .ttf files, double-click on them and click "Install"
+" Finally, uncomment the next line
+"let g:airline_powerline_fonts = 1
 
-set guifont="Meslo LG"\ Regular:h18
-set colorcolumn=80
-set number
-set relativenumber
-set hidden
-set history=100
-let python_highlighting_all=1
+" Show PASTE if in paste mode
+let g:airline_detect_paste=1
 
+" Show airline for tabs too
+let g:airline#extensions#tabline#enabled = 1
+
+" Use the solarized theme for the Airline status bar
+let g:airline_theme='solarized'
+
+" ----- jistr/vim-nerdtree-tabs -----
+" Open/close NERDTree Tabs with \t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+" To have NERDTree always open on startup
+let g:nerdtree_tabs_open_on_console_startup = 1
+
+
+" ----- scrooloose/syntastic settings -----
+" let g:syntastic_error_symbol = '✘'
+" let g:syntastic_warning_symbol = "▲"
+augroup mySyntastic
+  au!
+  au FileType tex let b:syntastic_mode = "passive"
+augroup END
+
+" ----- xolox/vim-easytags settings -----
+" Where to look for tags files
+set tags=./tags;,~/.vimtags
+" Sensible defaults
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+" ----- majutsushi/tagbar settings -----
+" Open/close tagbar with \b
+nmap <silent> <leader>b :TagbarToggle<CR>
+" Uncomment to open tagbar automatically whenever possible
+"autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+
+" ----- SimplyFold settings -----
 " enable folding
 set foldmethod=indent
 set foldlevel=99
@@ -43,40 +136,17 @@ set foldlevel=99
 " enable folding with space
 nnoremap <space> za
 
-" map gotodefinition
-"let g:ycm_autoclose_preview_window_after_completion=1
-"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-filetype indent on
-set nowrap
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set autoindent
-autocmd BufWritePre * :%s/\s\+$//e
-set incsearch
-set showmatch
-set clipboard=unnamedplus
+" ----- airblade/vim-gitgutter settings -----
+" In vim-airline, only display "hunks" if the diff is non-zero
+let g:airline#extensions#hunks#non_zero_only = 1
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-set splitbelow
-set splitright
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix
-
-map <leader>s :source $MYVIMRC<CR>
-
+" ----- Raimondi/delimitMate settings -----
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
