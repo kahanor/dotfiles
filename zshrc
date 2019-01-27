@@ -7,7 +7,7 @@ ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="cobalt2"
+ZSH_THEME="agnoster"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -124,3 +124,7 @@ plugins+=(zsh-completions)
 autoload -U compinit && compinit
 
 autoload zmv
+
+DEFAULT_USER=$USER
+
+promt_context() {}
